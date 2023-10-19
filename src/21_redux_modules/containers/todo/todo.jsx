@@ -7,7 +7,7 @@ import Footer from '../../components/footer/footer';
 import './todo.css';
 import { connect } from 'react-redux';
 
-import addTask from '../../actions/actionCreator';
+import {addTask , removeTask} from '../../actions/actionCreator';
 
 
 // const TASKS = [
@@ -50,14 +50,14 @@ class ToDo extends Component {
 }
   render() {
      const { activeFilter , taskText} = this.state;
-    const {tasks}=this.props;
+    const {tasks,removeTask}=this.props;
     // const tasksList = [];
     const isTasksExist = tasks && tasks.length > 0;
 
     return (
       <div className="todo-wrapper">
         <ToDoInput onChange={this.inputHandler} value={taskText} onKeyPress={this.addTasks} />
-        {isTasksExist && <ToDoList tasksList={tasks} />}
+        {isTasksExist && <ToDoList tasksList={tasks} removeTask={removeTask}/>}
         {isTasksExist && <Footer amount={tasks.length} activeFilter={activeFilter} />}
       </div>
     );
@@ -65,9 +65,9 @@ class ToDo extends Component {
  }
 
 
-export default connect(store=>({
-  tasks:store.tasks,
-}),{addTask}
+export default connect(state=>({
+  tasks:state.tasks,
+}),{addTask, removeTask}
 )(ToDo)
 // const connect=connect(tasks(addTask));
 // export default ToDo;
