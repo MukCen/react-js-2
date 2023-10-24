@@ -22,7 +22,7 @@ const ToDoList = ({ tasksList , removeTask, completeTask}) => (
 ToDoList.propTypes = {
   tasksList: PropTypes.array,
   removeTask:PropTypes.func,
- 
+ completeTask:PropTypes.func,
  
 
 }
@@ -30,6 +30,7 @@ ToDoList.propTypes = {
 ToDoList.defaultProps = {
   tasksList: [],
   removeTask:()=>{},
+  completeTask:()=>{},
  
 
 

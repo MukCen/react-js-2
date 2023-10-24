@@ -1,5 +1,6 @@
-import {  compose, legacy_createStore } from 'redux';
+import {  compose, legacy_createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
+import {save}  from 'redux-localstorage-simple';
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers =
@@ -13,7 +14,7 @@ const configureStore= preloadedState => (
     legacy_createStore(
         rootReducer,
          preloadedState,
-         composeEnhancers()
+         composeEnhancers(applyMiddleware(save({namespace: 'React App'})))
     )
 );
 
